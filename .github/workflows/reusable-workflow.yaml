@@ -1,0 +1,30 @@
+name: Reusable workflow
+on:
+  workflow_call:
+    inputs:
+      name:
+        type: string
+        description: Name of the person
+        default: Abdullah Al Noman
+        required: true
+    secrets:
+      access_token:
+        description: github secret access token
+        required: false
+
+jobs:
+  checkout-repository:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: ls -a
+  log-context-and-inputs:
+    runs-on: ubuntu-latest
+    steps:
+      - name: log context
+        run: echo ${{ toJson(github) }}
+      - name: log inputs and secret
+        run: |
+          echo ${{ inputs.name }}
+          echo ${{ secrets.access_token }}
+          
