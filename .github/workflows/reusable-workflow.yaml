@@ -22,7 +22,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: log context
-        run: echo ${{ toJson(github) }}
+        run: echo '${{ toJson(github) }}'
       - name: log inputs and secret
         run: |
           echo ${{ inputs.name }}
